@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <title>Архив статей</title>
 </head>
+{% load static %}
 <body>
     <div class="header">
-        <img src="{{ STATIC_URL }}static/img/logo.png" />
+        <img src="{% static 'img/logo.jpg' %}" />
     </div>
     <div class="archive">
         {% for post in posts %}
