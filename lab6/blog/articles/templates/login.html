@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Вход</title>
+        <link rel="stylesheet" href="{{ STATIC_URL }}/static/articles.css">
+    </head>
+    <body>
+        <div class="content" align="center">
+            {% if not request.user.is_authenticated %}
+            <h1>Вход</h1>
+            <form method="POST">{% csrf_token %}
+                <div><input style="width:800px;height:20px;" type="text" name="username" placeholder="Логин" value="{{ form.username }}"></div>
+                <div><input style="width:800px;height:20px;" type="text" name="password" placeholder="Пароль" value="{{ form.password }}"></div>
+                <div><input style="width:100px;height:20px;" type="submit" value="Продолжить"></div>
+            </form>
+            {{ form.errors }}
+            {% else %}
+                <div>Вы авторизованы</div>
+            {% endif %}
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Архив статей</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}/static/articles.css">
+</head>
+{% load static %}
+<body>
+
+    <div class="header">
+        {% if not request.user.is_authenticated %}
+        <div>
+            <a href="/register/">Зарегистрироваться</a>
+            <a href="/authorize">Войти</a>
+
+        </div>
+        {% else %}
+        <div>
+            <a href="/article/new/">Создать запись</a>
+            <a href="/logout/">Выйти</a>
+        </div>
+        {% endif %}
+        <img src="{% static 'img/logo.jpg' %}" />
+    </div>
+    <div style="float:right;">
+        <b><h2 class="post-title"><a href="/"><b>Все записи</b></a></h2></b>
+    </div>
+    <div class="archive">
+
+        <div class="one-post">
+
+            <h2 class="post-title" style="text-align:left;"><b>{{ post.title }}</b></h2>
+            <div class="article-info">
+                <p style="text-align:left;">
+                    <b>{{ post.author.username }}</b>
+                    <span style="float:right;">
+                    <b>{{ post.created_date }}</b>
+                    </span>
+                </p>
+            </div>
+            <p class="article-text">{{ post.get_excerpt }}</p>
+        </div>
+    </div>
+</body>
+
+</html>
